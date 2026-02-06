@@ -1,0 +1,12 @@
+import { config } from 'dotenv';
+
+config();
+
+export default {
+    datasources: {
+        db: {
+            provider: 'postgresql',
+            url: process.env.DATABASE_URL!,
+        },
+    },
+};

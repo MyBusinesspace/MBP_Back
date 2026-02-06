@@ -1,0 +1,6 @@
+# Generated OpenAPI spec (will be generated during CI/CD)
+openapi.json
+
+# Temporary files
+*.tmp
+*.temp
