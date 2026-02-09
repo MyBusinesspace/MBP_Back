@@ -5,6 +5,12 @@ import { logger } from '../utils/logger';
 
 export const authenticateJWT = (req: Request, res: Response, next: NextFunction): void => {
     try {
+        // ✅ إضافة استثناء لمسارات تسجيل الدخول بجوجل
+        // هذا يسمح للطلب بالمرور إذا كان الرابط يحتوي على auth/google
+        if (req.path.includes('/auth/google')) {
+            return next();
+        }
+
         const authHeader = req.headers.authorization;
 
         logger.debug('Auth header received:', authHeader);
@@ -50,7 +56,6 @@ export const optionalAuth = (req: Request, res: Response, next: NextFunction): v
 
         next();
     } catch (error) {
-        // Don't fail on optional auth
         next();
     }
 };
